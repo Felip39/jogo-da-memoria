@@ -1,0 +1,138 @@
+body {
+  background: #0a0a0f;
+  color: #e0e0ff;
+  font-family: Arial;
+  text-align: center;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.carta {
+  width: 100px;
+  height: 100px;
+  background: #2a2a4a;
+  border: 2px solid #6a5aff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.carta.virada {
+  background: #1a1a2e;
+  transform: rotateY(180deg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas no celular */
+  gap: 10px;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 350px; /* não fica gigante */
+  padding: 0 10px;
+}
+
+.carta {
+  aspect-ratio: 1 / 1; /* quadrado perfeito */
+  width: 100%;
+  background: #2a2a4a;
+  border: 2px solid #6a5aff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8vw; /* tamanho do emoji se adapta */
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.carta img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Para telas maiores que 600px - vira 4x3 */
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 500px;
+  }
+  .carta {
+    font-size: 40px; /* emoji fixo no pc */
+  }
+}
+
+/* MENU DOS BOTÕES */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  margin: 20px 0;
+}
+
+/* ESTILO BASE DOS BOTÕES */
+.btn {
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 12px;
+  border: 2px solid #6a5aff;
+  background: linear-gradient(145deg, #6a5aff, #4c3dff);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 0 #3a2ccc, 0 0 15px rgba(106, 90, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 80%;
+  max-width: 300px;
+}
+
+/* EFEITO QUANDO PASSA O MOUSE / TOCA */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #3a2ccc, 0 0 25px rgba(106, 90, 255, 0.7);
+  background: linear-gradient(145deg, #7a6bff, #5c4dff);
+}
+
+/* EFEITO QUANDO CLICA */
+.btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #3a2ccc, 0 0 10px rgba(106, 90, 255, 0.3);
+}
+
+/* ESTILIZAR O INPUT DE ARQUIVO */
+.upload-label {
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 12px;
+  border: 2px dashed #6a5aff;
+  background: #1a1a2e;
+  color: #aab0ff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 80%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.upload-label:hover {
+  background: #2a2a4a;
+  color: white;
+  border-color: #8a7bff;
+}
+
+#upload-fotos {
+  display: none; /* esconde o input feio */
+}
