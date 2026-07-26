@@ -6,19 +6,91 @@
     <title>Guardião dos Pares</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <h1>Guardião dos Pares</h1>
-  
-  <div class="menu">
-  <button id="btn-icones" class="btn">Modo Ícones</button>
-  
-  <label for="upload-fotos" class="upload-label">📷 Escolher 6 Fotos</label>
-  <input type="file" id="upload-fotos" multiple accept="image/*">
-</div>
 
-  <div id="tabuleiro" class="grid"></div>
+    <!-- ================= TELA DE LOGIN / CADASTRO ================= -->
+    <div id="container-autenticacao">
+        <div class="card">
+            <!-- Motor da animação em CSS (Oculto) -->
+            <input type="checkbox" id="toggle" class="toggle"/>
+            <div class="card-bg"></div>
 
-  <script src="script.js"></script>
+            <!-- LADO ESQUERDO (Painel Roxo Inicial) -->
+            <div class="hero signup">
+                <h2>Bem-vindo de volta!</h2>
+                <p>Entre na sua conta para continuar</p>
+                <label for="toggle" class="btn-toggle">LOGAR</label>
+            </div>
+
+            <!-- LADO DIREITO (Formulário de Cadastro) -->
+            <form class="form signup" id="form-signup">
+                <h2>Crie sua conta</h2>
+                <div class="input-group">
+                    <input type="text" id="name-signup" placeholder=" " required>
+                    <label for="name-signup">Nome completo</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email-signup" placeholder=" " required>
+                    <label for="email-signup">E-mail</label>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <input type="tel" id="phone-signup" placeholder=" " maxlength="15" required>
+                        <label for="phone-signup">Telefone</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="cpf-signup" placeholder=" " maxlength="14" required>
+                        <label for="cpf-signup">CPF</label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="pass-signup" placeholder=" " required>
+                    <label for="pass-signup">Senha</label>
+                </div>
+                <button type="submit" class="btn">CADASTRAR</button>
+            </form>
+
+            <!-- LADO DIREITO (Painel Roxo Após o Clique) -->
+            <div class="hero signin">
+                <h2>Olá, amigo!</h2>
+                <p>Crie sua conta e comece sua jornada</p>
+                <label for="toggle" class="btn-toggle">CADASTRE-SE</label>
+            </div>
+
+            <!-- LADO ESQUERDO (Formulário de Login) -->
+            <form class="form signin" id="form-signin">
+                <h2>Entrar</h2>
+                <div class="input-group">
+                    <input type="email" id="email-signin" placeholder=" " required>
+                    <label for="email-signin">E-mail</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="pass-signin" placeholder=" " required>
+                    <label for="pass-signin">Senha</label>
+                </div>
+                <a href="#" class="forgot-pass">Esqueceu sua senha?</a>
+                
+                <!-- Botões de Acesso -->
+                <button type="submit" class="btn">ENTRAR</button>
+                <button type="button" id="btn-guest" class="btn-guest">Entrar como Convidado</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= TELA DO JOGO (COMEÇA ESCONDIDA) ================= -->
+    <div id="container-jogo" style="display: none;">
+        <h1>Guardião dos Pares</h1>
+        <div class="menu">
+            <button id="btn-icones" class="btn">Modo Ícones</button>
+            <label for="upload-fotos" class="upload-label">📷 Escolher 6 Fotos</label>
+            <input type="file" id="upload-fotos" multiple accept="image/*">
+        </div>
+        <div id="tabuleiro" class="grid"></div>
+        <!-- NOVO: Botão de Reiniciar (Começa escondido) -->
+        <div style="margin-top: 30px;">
+            <button id="btn-reiniciar" class="btn" style="display: none;">Jogar Novamente 🔄</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

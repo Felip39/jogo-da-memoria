@@ -1,138 +1,356 @@
+/* RESET E ESTILOS BASE */
 body {
-  background: #0a0a0f;
-  color: #e0e0ff;
-  font-family: Arial;
-  text-align: center;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 100px);
-  gap: 15px;
-  justify-content: center;
-  margin-top: 20px;
-}
-.carta {
-  width: 100px;
-  height: 100px;
-  background: #2a2a4a;
-  border: 2px solid #6a5aff;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-.carta.virada {
-  background: #1a1a2e;
-  transform: rotateY(180deg);
+    background: #0a0a0f;
+    color: #e0e0ff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colunas no celular */
-  gap: 10px;
-  justify-content: center;
-  margin: 20px auto;
-  max-width: 350px; /* não fica gigante */
-  padding: 0 10px;
+h1, h2 {
+    color: #e0e0ff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(106, 90, 255, 0.5);
 }
 
-.carta {
-  aspect-ratio: 1 / 1; /* quadrado perfeito */
-  width: 100%;
-  background: #2a2a4a;
-  border: 2px solid #6a5aff;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 8vw; /* tamanho do emoji se adapta */
-  cursor: pointer;
-  transition: transform 0.3s;
+/* CONTAINER DE LOGIN / CARD PRINCIPAL */
+#container-autenticacao {
+    width: 100%;
+    max-width: 850px;
+    margin: auto;
 }
 
-.carta img {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-  object-fit: cover;
+.card {
+    background: #1a1a2e;
+    border: 2px solid #6a5aff;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(106, 90, 255, 0.3);
+    display: flex;
+    position: relative;
+    width: 100%;
+    min-height: 550px;
+    overflow: hidden;
 }
 
-/* Para telas maiores que 600px - vira 4x3 */
-@media (min-width: 600px) {
-  .grid {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 500px;
-  }
-  .carta {
-    font-size: 40px; /* emoji fixo no pc */
-  }
+.toggle {
+    display: none;
 }
 
-/* MENU DOS BOTÕES */
+/* PAINÉIS DE FUNDO LATERAL (HERO) */
+.hero {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    transition: all 0.6s ease-in-out;
+    box-sizing: border-box;
+}
+
+.hero p {
+    color: #aab0ff;
+    margin-bottom: 30px;
+}
+
+/* Cortina roxa deslizante da animação */
+.card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(145deg, #6a5aff, #4c3dff);
+    box-shadow: 0 0 20px rgba(106, 90, 255, 0.5);
+    z-index: 4;
+    transition: transform 0.6s ease-in-out;
+}
+
+/* FORMULÁRIOS INTERNOS */
+.form {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: all 0.6s ease-in-out;
+    background: #141424;
+    z-index: 2;
+}
+
+.input-row {
+    display: flex;
+    gap: 15px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    background: #2a2a4a;
+    border: 2px solid #44447a;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    border-color: #6a5aff;
+    box-shadow: 0 0 10px rgba(106, 90, 255, 0.4);
+}
+
+/* Labels Flutuantes */
+.input-group label {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8a8ab8;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+    background: #141424;
+    padding: 0 5px;
+    color: #6a5aff;
+}
+
+.forgot-pass {
+    color: #aab0ff;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 20px;
+    text-align: right;
+    transition: color 0.2s;
+}
+
+.forgot-pass:hover {
+    color: #6a5aff;
+}
+
+/* BOTÕES NEON PRINCIPAIS */
+.btn, .btn-toggle {
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 12px;
+    border: 2px solid #6a5aff;
+    background: linear-gradient(145deg, #6a5aff, #4c3dff);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 0 #3a2ccc, 0 0 15px rgba(106, 90, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.btn-toggle {
+    background: transparent;
+    border: 2px solid white;
+    box-shadow: 0 4px 0 #cccccc, 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.btn:hover, .btn-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #3a2ccc, 0 0 25px rgba(106, 90, 255, 0.7);
+}
+
+.btn:active, .btn-toggle:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 #3a2ccc, 0 0 10px rgba(106, 90, 255, 0.3);
+}
+
+/* BOTÃO ENTRAR COMO CONVIDADO (ESTILO CORTADO/TRACEJADO) */
+.btn-guest {
+    margin-top: 12px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 12px;
+    border: 2px dashed #6a5aff;
+    background: transparent;
+    color: #aab0ff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn-guest:hover {
+    background: rgba(106, 90, 255, 0.1);
+    color: white;
+    border-style: solid;
+    transform: translateY(-2px);
+}
+
+/* LÓGICA REFEITA DE TROCA DE ABAS */
+.toggle:not(:checked) ~ .hero.signin,
+.toggle:not(:checked) ~ .form.signin {
+    display: none !important;
+}
+
+.toggle:not(:checked) ~ .hero.signup,
+.toggle:not(:checked) ~ .form.signup {
+    display: flex;
+}
+
+.toggle:checked ~ .card-bg {
+    transform: translateX(100%);
+}
+
+.toggle:checked ~ .hero.signup,
+.toggle:checked ~ .form.signup {
+    display: none !important;
+}
+
+.toggle:checked ~ .hero.signin,
+.toggle:checked ~ .form.signin {
+    display: flex;
+}
+
+.hero.signup { order: 1; }
+.form.signup { order: 2; }
+.form.signin { order: 1; }
+.hero.signin { order: 2; }
+
+/* ================= ELEMENTOS DO JOGO ================= */
 .menu {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  align-items: center;
-  margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin: 20px 0;
 }
 
-/* ESTILO BASE DOS BOTÕES */
-.btn {
-  padding: 14px 28px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 12px;
-  border: 2px solid #6a5aff;
-  background: linear-gradient(145deg, #6a5aff, #4c3dff);
-  color: white;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 0 #3a2ccc, 0 0 15px rgba(106, 90, 255, 0.4);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  width: 80%;
-  max-width: 300px;
+.menu .btn {
+    width: 80%;
+    max-width: 300px;
 }
 
-/* EFEITO QUANDO PASSA O MOUSE / TOCA */
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 0 #3a2ccc, 0 0 25px rgba(106, 90, 255, 0.7);
-  background: linear-gradient(145deg, #7a6bff, #5c4dff);
-}
-
-/* EFEITO QUANDO CLICA */
-.btn:active {
-  transform: translateY(4px);
-  box-shadow: 0 0 0 #3a2ccc, 0 0 10px rgba(106, 90, 255, 0.3);
-}
-
-/* ESTILIZAR O INPUT DE ARQUIVO */
 .upload-label {
-  padding: 14px 28px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 12px;
-  border: 2px dashed #6a5aff;
-  background: #1a1a2e;
-  color: #aab0ff;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  width: 80%;
-  max-width: 300px;
-  text-align: center;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 12px;
+    border: 2px dashed #6a5aff;
+    background: #1a1a2e;
+    color: #aab0ff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .upload-label:hover {
-  background: #2a2a4a;
-  color: white;
-  border-color: #8a7bff;
+    background: #2a2a4a;
+    color: white;
+    border-color: #8a7bff;
 }
 
 #upload-fotos {
-  display: none; /* esconde o input feio */
+    display: none;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    justify-content: center;
+    margin: 20px auto;
+    max-width: 350px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.carta {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-width: 100px; /* Garante tamanho máximo fixo igual ao modo PC */
+    margin: 0 auto;   /* Centraliza as cartas nas colunas */
+    background: #2a2a4a;
+    border: 2px solid #6a5aff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8vw;
+    cursor: pointer;
+    transition: transform 0.3s;
+    color: white;
+    box-sizing: border-box;
+    overflow: hidden; /* Impede que a imagem saia das bordas arredondadas */
+}
+
+
+.carta.virada {
+    background: #1a1a2e;
+    transform: rotateY(180deg);
+}
+
+/* Força as imagens a preencherem a carta sem alterar o tamanho dela */
+.carta img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Responsividade do Tabuleiro (PC) */
+@media (min-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 500px;
+    }
+    .carta {
+        font-size: 40px;
+        width: 100px;  /* Força tamanho idêntico no computador */
+        height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        flex-direction: column;
+        min-height: auto;
+    }
+    .hero, .form {
+        width: 100%;
+        padding: 30px 20px;
+    }
+    .card-bg {
+        display: none;
+    }
 }
