@@ -2,27 +2,27 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Guardião dos Pares</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ================= TELA DE LOGIN / CADASTRO ================= -->
+    <!-- ================= TELA DE AUTENTICAÇÃO ================= -->
     <div id="container-autenticacao">
         <div class="card">
-            <!-- Motor da animação em CSS (Oculto) -->
+            <!-- Motor da animação em CSS para Desktop -->
             <input type="checkbox" id="toggle" class="toggle"/>
             <div class="card-bg"></div>
 
-            <!-- LADO ESQUERDO (Painel Roxo Inicial) -->
+            <!-- PAINEL ROXO: Ir para o Login -->
             <div class="hero signup">
                 <h2>Bem-vindo de volta!</h2>
                 <p>Entre na sua conta para continuar</p>
                 <label for="toggle" class="btn-toggle">LOGAR</label>
             </div>
 
-            <!-- LADO DIREITO (Formulário de Cadastro) -->
+            <!-- FORMULÁRIO DE CADASTRO -->
             <form class="form signup" id="form-signup">
                 <h2>Crie sua conta</h2>
                 <div class="input-group">
@@ -48,16 +48,19 @@
                     <label for="pass-signup">Senha</label>
                 </div>
                 <button type="submit" class="btn">CADASTRAR</button>
+                
+                <!-- Alternador visível apenas no Mobile -->
+                <label for="toggle" class="mobile-switch-label">Já tem conta? Entrar</label>
             </form>
 
-            <!-- LADO DIREITO (Painel Roxo Após o Clique) -->
+            <!-- PAINEL ROXO: Ir para o Cadastro -->
             <div class="hero signin">
                 <h2>Olá, amigo!</h2>
                 <p>Crie sua conta e comece sua jornada</p>
                 <label for="toggle" class="btn-toggle">CADASTRE-SE</label>
             </div>
 
-            <!-- LADO ESQUERDO (Formulário de Login) -->
+            <!-- FORMULÁRIO DE LOGIN -->
             <form class="form signin" id="form-signin">
                 <h2>Entrar</h2>
                 <div class="input-group">
@@ -70,14 +73,16 @@
                 </div>
                 <a href="#" class="forgot-pass">Esqueceu sua senha?</a>
                 
-                <!-- Botões de Acesso -->
                 <button type="submit" class="btn">ENTRAR</button>
                 <button type="button" id="btn-guest" class="btn-guest">Entrar como Convidado</button>
+                
+                <!-- Alternador visível apenas no Mobile -->
+                <label for="toggle" class="mobile-switch-label">Não tem conta? Registar</label>
             </form>
         </div>
     </div>
 
-    <!-- ================= TELA DO JOGO (COMEÇA ESCONDIDA) ================= -->
+    <!-- ================= TELA DO JOGO (COMEÇA OCULTA) ================= -->
     <div id="container-jogo" style="display: none;">
         <h1>Guardião dos Pares</h1>
         <div class="menu">
@@ -85,12 +90,14 @@
             <label for="upload-fotos" class="upload-label">📷 Escolher 6 Fotos</label>
             <input type="file" id="upload-fotos" multiple accept="image/*">
         </div>
+        
         <div id="tabuleiro" class="grid"></div>
-        <!-- NOVO: Botão de Reiniciar (Começa escondido) -->
-        <div style="margin-top: 30px;">
+
+        <div style="margin-top: 30px; margin-bottom: 30px;">
             <button id="btn-reiniciar" class="btn" style="display: none;">Jogar Novamente 🔄</button>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
