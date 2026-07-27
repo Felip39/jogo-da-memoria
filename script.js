@@ -1,6 +1,5 @@
 // ================= CAPTURA DOS COMPONENTES DE TELA ================= 
-const inputPhone = document.getElementById('phone-signup'); 
-const inputCPF = document.getElementById('cpf-signup'); 
+const inputPhone = document.getElementById('phone-signup');  
 const formSignup = document.getElementById('form-signup'); 
 const formSignin = document.getElementById('form-signin'); 
 
@@ -11,15 +10,7 @@ inputPhone.addEventListener('input', (e) => {
     if (value.length > 3) value = value.slice(0, 3) + ") " + value.slice(3); 
     if (value.length > 10) value = value.slice(0, 10) + "-" + value.slice(10, 14); 
     e.target.value = value; 
-}); 
-
-inputCPF.addEventListener('input', (e) => { 
-    let value = e.target.value.replace(/\D/g, ""); 
-    if (value.length > 3) value = value.slice(0, 3) + "." + value.slice(3); 
-    if (value.length > 7) value = value.slice(0, 7) + "." + value.slice(7); 
-    if (value.length > 11) value = value.slice(0, 11) + "-" + value.slice(11, 13); 
-    e.target.value = value; 
-}); 
+});  
 
 // ================= GESTÃO DE TRANSIÇÃO E ACESSO ================= 
 function transicionarParaOJogo(nomeDoJogador) { 

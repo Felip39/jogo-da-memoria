@@ -1,20 +1,19 @@
-/* ESTILOS GERAIS (CORRIGIDO) */
+/* ESTILOS GERAIS */
 body {
     background: #0a0a0f;
     color: #e0e0ff;
     font-family: Arial, sans-serif;
     text-align: center;
-    margin: 5px;
-    padding: 10px; /* Zerado para evitar empurrar o conteúdo em telas pequenas */
+    margin: 0;
+    padding: 0; 
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza na horizontal */
-    justify-content: center; /* Centraliza na vertical */
-    min-height: 100vh;
-    width: 90vw; /* Garante que o fundo ocupe toda a largura real da tela */
+    align-items: center; 
+    justify-content: center; 
+    min-height: 100vh; 
+    width: 100vw; 
     box-sizing: border-box;
 }
-
 
 h1, h2 {
     color: #e0e0ff;
@@ -22,13 +21,15 @@ h1, h2 {
     text-shadow: 0 0 10px rgba(106, 90, 255, 0.5);
 }
 
-/* CONTAINER DE LOGIN / CARD PRINCIPAL (CORRIGIDO) */
+/* CONTAINER DE LOGIN / CARD PRINCIPAL */
 #container-autenticacao {
     width: 100%;
     max-width: 850px;
-    margin: 0 auto; /* O 'auto' força margens idênticas na esquerda e direita */
-    padding: 0; /* Adiciona uma folga segura nas bordas para não colar na tela do celular */
+    margin: 0 auto; 
+    padding: 0 15px; 
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
 }
 
 .card {
@@ -65,6 +66,7 @@ h1, h2 {
     margin-bottom: 30px;
 }
 
+/* CORRIGIDO: Posição inicial da cortina roxa alterada para a direita */
 .card-bg {
     position: absolute;
     top: 0;
@@ -75,24 +77,33 @@ h1, h2 {
     box-shadow: 0 0 20px rgba(106, 90, 255, 0.5);
     z-index: 4;
     transition: transform 0.6s ease-in-out;
+    transform: translateX(100%); 
 }
 
-/* FORMULÁRIOS */
+/* Quando desmarcar (ir para o cadastro), ela desliza para a esquerda */
+.toggle:not(:checked) ~ .card-bg { 
+    transform: translateX(0); 
+}
+
+/* FORMULÁRIOS CENTRALIZADOS */
 .form {
     width: 50%;
     padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: stretch; 
     box-sizing: border-box;
     transition: all 0.6s ease-in-out;
     background: #141424;
     z-index: 2;
+    margin: 0; 
 }
 
 .input-row {
     display: flex;
     gap: 15px;
+    width: 100%;
 }
 
 .input-group {
@@ -129,13 +140,13 @@ h1, h2 {
     pointer-events: none;
 }
 
-.input-group input:focus ~ label,
+.input-group input:focus ~ label, 
 .input-group input:not(:placeholder-shown) ~ label {
     top: -10px;
-    left: 0;
+    left: 10px;
     font-size: 12px;
     background: #141424;
-    padding: px;
+    padding: 0 5px; 
     color: #6a5aff;
 }
 
@@ -178,7 +189,7 @@ h1, h2 {
     box-shadow: 0 4px 0 #cccccc, 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-/* CORRIGIDO: ESTILIZAÇÃO DO BOTÃO DE CONVIDADO */
+/* ESTILIZAÇÃO DO BOTÃO DE CONVIDADO */
 .btn-guest {
     display: block;
     margin-top: 15px;
@@ -214,58 +225,58 @@ h1, h2 {
 }
 
 .mobile-switch-label {
-    display: none; /* Oculto no computador */
+    display: none; 
 }
 
-/* LÓGICA DE TRANSIÇÃO (DESKTOP) */
-.toggle:not(:checked) ~ .hero.signin,
-.toggle:not(:checked) ~ .form.signin {
-    display: none !important;
-}
-.toggle:not(:checked) ~ .hero.signup,
-.toggle:not(:checked) ~ .form.signup {
-    display: flex;
-}
-.toggle:checked ~ .card-bg {
-    transform: translateX(100%);
-}
-.toggle:checked ~ .hero.signup,
-.toggle:checked ~ .form.signup {
-    display: none !important;
-}
-.toggle:checked ~ .hero.signin,
-.toggle:checked ~ .form.signin {
-    display: flex;
+/* CORRIGIDO: LÓGICA DE TRANSIÇÃO INVERTIDA (DESKTOP) */
+.toggle:checked ~ .hero.signin, 
+.toggle:checked ~ .form.signin { 
+    display: flex; 
 }
 
+.toggle:checked ~ .hero.signup, 
+.toggle:checked ~ .form.signup { 
+    display: none !important; 
+}
+
+.toggle:not(:checked) ~ .hero.signup, 
+.toggle:not(:checked) ~ .form.signup { 
+    display: flex; 
+}
+
+.toggle:not(:checked) ~ .hero.signin, 
+.toggle:not(:checked) ~ .form.signin { 
+    display: none !important; 
+}
+
+/* Ordenação visual dos painéis fixada */
 .hero.signup { order: 1; }
 .form.signup { order: 2; }
 .form.signin { order: 1; }
 .hero.signin { order: 2; }
 
-
-/* ================= REGRAS DE LAYOUT MOBILE (CORRIGIDAS) ================= */
+/* ================= REGRAS DE LAYOUT MOBILE ================= */
 @media (max-width: 768px) {
     .card {
         flex-direction: column;
         min-height: auto;
-        padding: 10px;
+        padding: 15px;
         background: #141424;
+        align-items: center;
+        justify-content: center;
     }
     
-    /* Remove os painéis decorativos laterais no telemóvel */
     .hero, .card-bg {
         display: none !important;
     }
     
-    /* Força os formulários a ocuparem a largura total */
     .form {
-        width: 90%;
-        padding: 20px 10px;
+        width: 100%; 
+        padding: 100px 15px;
         background: transparent;
+        margin: 0 auto;
     }
     
-    /* Liga o alternador de abas em formato de texto para ecrãs táteis */
     .mobile-switch-label {
         display: block;
         margin-top: 25px;
@@ -274,21 +285,21 @@ h1, h2 {
         font-size: 14px;
         cursor: pointer;
     }
-
-    /* Comportamento alternado mobile baseado na checkbox ocultada */
-    .toggle:not(:checked) ~ .form.signup {
+    
+    /* CORRIGIDO: Comportamento alternado mobile invertido */
+    .toggle:checked ~ .form.signin {
         display: flex !important;
-    }
-    .toggle:not(:checked) ~ .form.signin {
-        display: none !important;
     }
     .toggle:checked ~ .form.signup {
         display: none !important;
     }
-    .toggle:checked ~ .form.signin {
+    .toggle:not(:checked) ~ .form.signin {
+        display: none !important;
+    }
+    .toggle:not(:checked) ~ .form.signup {
         display: flex !important;
     }
-
+    
     .input-row {
         flex-direction: column;
         gap: 0;
@@ -338,32 +349,30 @@ h1, h2 {
 /* TABULEIRO TRAVADO E PADRONIZADO */
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(3, 80px); 
+    gap: 12px;
     justify-content: center;
     margin: 20px auto;
-    max-width: 340px;
-    padding: 0;
+    max-width: 350px;
+    padding: 0 10px;
     box-sizing: border-box;
 }
 
 .carta {
-    aspect-ratio: 1 / 1;
-    width: 100%;
-    max-width: 100px;
-    margin: 0 auto;
+    width: 80px; 
+    height: 80px; 
     background: #2a2a4a;
     border: 2px solid #6a5aff;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 8vw;
+    font-size: 32px; 
     cursor: pointer;
     transition: transform 0.3s;
     color: white;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: hidden; 
 }
 
 .carta.virada {
@@ -372,24 +381,24 @@ h1, h2 {
 }
 
 .carta img {
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
     border-radius: 8px;
-    object-fit: cover;
+    object-fit: cover; 
     display: block;
 }
 
-/* REGRAS DO TABULEIRO PARA COMPUTADOR (DESKTOP) */
+/* Responsividade do Tabuleiro (PC / Ecrãs Maiores) */
 @media (min-width: 600px) {
     .grid {
-        grid-template-columns: repeat(4, 1fr);
-        max-width: 460px;
+        grid-template-columns: repeat(4, 100px); 
+        max-width: 500px;
     }
     .carta {
         font-size: 40px;
-        width: 90px;
-        height: 90px;
+        width: 100px; 
+        height: 100px;
     }
 }

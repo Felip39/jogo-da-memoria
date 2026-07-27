@@ -11,8 +11,8 @@
     <!-- ================= TELA DE AUTENTICAÇÃO ================= -->
     <div id="container-autenticacao">
         <div class="card">
-            <!-- Motor da animação em CSS para Desktop -->
-            <input type="checkbox" id="toggle" class="toggle"/>
+            <!-- CORRIGIDO: Atributo 'checked' adicionado para iniciar direto no Login -->
+            <input type="checkbox" id="toggle" class="toggle" checked/>
             <div class="card-bg"></div>
 
             <!-- PAINEL ROXO: Ir para o Login -->
@@ -38,10 +38,6 @@
                         <input type="tel" id="phone-signup" placeholder=" " maxlength="15" required>
                         <label for="phone-signup">Telefone</label>
                     </div>
-                    <div class="input-group">
-                        <input type="text" id="cpf-signup" placeholder=" " maxlength="14" required>
-                        <label for="cpf-signup">CPF</label>
-                    </div>
                 </div>
                 <div class="input-group">
                     <input type="password" id="pass-signup" placeholder=" " required>
@@ -60,7 +56,7 @@
                 <label for="toggle" class="btn-toggle">CADASTRE-SE</label>
             </div>
 
-            <!-- FORMULÁRIO DE LOGIN -->
+            <!-- FORMULÁRIO DE LOGIN (INICIA VISÍVEL) -->
             <form class="form signin" id="form-signin">
                 <h2>Entrar</h2>
                 <div class="input-group">
