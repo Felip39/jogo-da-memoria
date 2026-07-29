@@ -164,6 +164,15 @@ h1, h2 {
 }
 
 /* BOTÕES GERAIS */
+.timer{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin: 15px 0;
+    padding:10px;
+    border-radius: 10px;
+    display: inline-block;
+}
 .btn, .btn-toggle {
     padding: 14px 28px;
     font-size: 16px;
